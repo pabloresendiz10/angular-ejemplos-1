@@ -1,0 +1,65 @@
+<div style="margin: 20px;">
+  <h1>Ejemplo de Formulario Reactivos</h1>
+  <h3>Opinion de cliente</h3>
+  
+<div class="col-sm-4">
+  <form [formGroup]="formOpinion" (ngSubmit)="onSubmit()">
+    <p>
+      Nombre: <input type="text" class="form-control" formControlName="nombre"/>
+      @if(enviado && formOpinion.get('nombre')?.errors?.['required']){<span style="color: red;">Este campo es obligatorio</span>}
+      @if(enviado && formOpinion.get('nombre')?.errors?.['minlength']){<span style="color: red;">El nombre debe tener al menos 10 caracteres</span>}
+    </p>
+    <p>
+      E-Mail: <input type="text" class="form-control" formControlName="email"/>
+      @if(enviado && formOpinion.get('email')?.errors?.['required']){<span style="color: red;">Este campo es obligatorio</span>}
+      @if(enviado && formOpinion.get('email')?.errors?.['email']){<span style="color: red;">El e-mail proporcionado no es valido</span>}
+    </p>
+    <p>
+      Es cliente registrado?
+      <input type="radio"  formControlName="status" value="Si"/>Si
+      <input type="radio"  formControlName="status" value="No"/>No
+      @if(enviado && formOpinion.get('status')?.errors?.['required']){<span style="color: red;">Este campo es obligatorio</span>}
+    </p>
+    <p>
+      Municipio:
+      <select class="form-control" formControlName="municipio">
+        <option value="Amealco">Amealco</option>
+        <option value="San Juan del Rio">San Juan del Rio</option>
+        <option value="Tequisquiapan">Tequisquiapan</option>
+      </select>
+      @if(enviado && formOpinion.get('municipio')?.errors?.['required']){<span style="color: red;">Este campo es obligatorio</span>}
+    </p>
+    <p>
+      Opinion:
+      <textarea class="form-control" rows="10" cols="70" formControlName="opinion"></textarea>
+      @if(enviado && formOpinion.get('opinion')?.errors?.['required']){<span style="color: red;">Este campo es obligatorio</span>}
+      @if(enviado && formOpinion.get('opinion')?.errors?.['maxlength']){<span style="color: red;">Solo se permiten 500 caracteres</span>}
+    </p>
+    <p>
+      <input type="checkbox"  formControlName="autorizacion"/>
+      Desea compartir sus datos personales?
+    </p>
+    <button type="submit" class="btn btn-primary">Enviar</button>
+  </form>
+</div>
+
+
+<div>
+  @if(nombreCliente !='' && emailCliente !='' && statusCliente !='' && municipioCliente !='' && opinionCliente !=''){
+    Datos enviados: <br />
+    Nombre:{{ nombreCliente }} <br />
+    E-mail:{{ emailCliente }} <br />
+    Cliente registrado:{{statusCliente}} <br />
+    Municipio:{{municipioCliente}} <br />
+    @if(autorizacionCliente) {
+      El cliente autoriza compartir sus datos personales <br />
+    } @else {
+      El cliente <strong>NO AUTORIZA</strong> sus datos personales
+    }
+    Opinion: {{opinionCliente}}
+  }
+</div>
+
+
+</div>
+<router-outlet></router-outlet>

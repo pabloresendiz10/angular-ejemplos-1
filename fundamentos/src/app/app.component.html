@@ -1,0 +1,72 @@
+<div class="container">
+  <h1>Fundamentos de Angular</h1>
+
+  <div>
+    <h4>Interpolacion</h4>
+    <p>Nombre del alumno: {{nombre}}</p>
+    <p>Años de servicio: {{aniosServicio}}</p>
+    <p>Correo: {{email}}</p>
+    <p>Uno + uno = {{ 1+1 }}</p>
+    <p>{{ esActivo()}}</p>
+    <p>Total de alumnos: {{ sumarAlumno()}}</p>
+  </div>
+
+  <p></p>
+
+  <div>
+    <h4>Control de flujo (if, for, switch)</h4>
+    @if(aniosServicio >= 20) {
+      <p>Tiene mucha antiguedad</p>
+    } @else {
+      <p>No tiene mucha antiguedad</p>
+    }
+
+    <p></p>
+    <h4>Listado de productos</h4>
+    <table>
+      @for(producto of productos; track producto.id) {
+        <tr>
+          <td>{{ producto.id }}</td>
+          <td>{{ producto.descripcion }}</td>
+          <td>{{ producto.precio }}</td>
+        </tr>
+      }
+    </table>
+
+    <p></p>
+
+    <h4>Numero aleatorio entre 1 y 3</h4>
+    @switch (numero) {
+      @case (1){
+        <p>UNO</p>
+      }
+      @case (2) {
+        <p>DOS</p>
+      }
+      @case (3){
+        <p>TRES</p>
+      }
+    }
+
+  </div>
+
+  <p></p>
+
+  <div>
+    <h4>Captura de eventos (event handler)</h4>
+    <h6>{{ contador}}</h6>
+    <button type="button" class="btn btn-primary" (click)="incrementarContador()">Sumar</button>
+    <button type="button" class="btn btn-warning" (click)="decrementerContador()">Restar</button>
+  </div>
+
+  <p></p>
+
+  <div>
+    <h4>Property Binding</h4>
+    <button type="button" class="btn btn-primary" [disabled]="desactivarBoton">Enviar</button>
+    <button type="button" class=" btn btn-success" (click)="cambiarValor()">Habilitar boton</button>
+
+  </div>
+
+  
+</div>
